@@ -1,0 +1,8 @@
+#blinds-cont {background: transparent 0 0 no-repeat; margin: 0; padding: 0; font-family: 'Georgia', 'Arial Narrow', 'Arial', sans-serif; height: 540px; width: 65%; position: relative; margin-bottom: 3px;float: left;left: 0;}
+#blinds-cont #blinds { margin: 0 auto; background: url(spinner.gif) 50% no-repeat; height: 100%; width: 100%; }
+#blinds-cont #blinds .floom_slice { z-index: 10; }
+#blinds-cont #blinds .floom_caption { padding: 0 0 0 20px; text-shadow: 0 1px 0 #fff; font-size: 1.0em; color: #333; font-style: italic; position: relative; text-align: left; width: 100%; top: -30px; }
+#blinds-cont #blinds .floom_progressbar { font-size: 1px; background: #131718; height: 3px; position: relative; z-index: 1; width: 0; top: -3px; }
+#blinds-cont #blinds .floom_container { overflow: hidden; border: 0; border-bottom: 3px solid gray;}
+#blinds-cont #blinds .floom_container img{height:100%; width:100%;}
+#blinds-cont #blinds .floom_vertical { float: left; }

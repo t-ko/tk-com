@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>t:Ko Design | Portfolio</title>
+	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	<link rel="shortcut icon" href="images/favicon.gif" />
+	<link rel="stylesheet" href="galleria.css" type="text/css" media="screen" charset="utf-8" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" />
+	<script type="text/javascript" src="galleria/galleria-1.2.7.min.js" />
+	<script type="text/javascript" src="galleria/plugins/flickr/galleria.flickr.min.js" />
+	
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="menu">
+			<ul>
+				<li><a href="index.xhtml">home</a></li>
+				<li class="current_page_item"><a href="portfolio.xhtml">portfolio</a></li>
+				<li><a href="contact.xhtml">contact</a></li>
+			</ul>
+		</div>
+		<!-- end #menu -->
+	</div>
+	<!-- end #header -->
+	<div class="galleria" id="container">
+		<div id="folders">
+			<h1>digital</h1>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630243025802/">logos</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630243025772/">web design</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630242433512/">presentations</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630243025792/">u.i. design</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630243025796/">adverts</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630319602638/">graphic tees</a>
+			<h1>traditional</h1>				
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630196485502/">illustration</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630196495888/">cartoons</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630243025806/">paintings</a>
+			<a href="http://www.flickr.com/photos/lgssp2005/sets/72157630243025812/">tattoos</a>
+		</div>
+		<div id="gallery">
+			<div id="galleria">	
+			</div>
+			<a id="fullscreen" href="#">Enter fullscreen</a>
+		</div>			
+	</div>
+	<div>
+	<script type="text/javascript">
+	   // load the theme
+		Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+		// create a flickr instance
+		var flickr = new Galleria.Flickr();
+		// cache the gallery
+		var elem = $('#galleria');
+		// create and append the loader growl
+		var loader = $(' ', {
+			id: 'loader'
+		}).appendTo('#gallery');
+		// a local var used later
+		var set;
+		// set flickr to fetch description and increase the photo limit
+		flickr.setOptions({
+			max: 100,
+			description: true
+		});
+		// attach event handler for the folders
+		$('#folders a').click(function(e) {
+			e.preventDefault();
+			// toggle active class
+			$(this).addClass('active').siblings('.active').removeClass('active');
+			// extract the set id from the link href
+			set = this.href.split('/');
+			set = set[set.length-2];
+			// add loader text and show
+			loader.text('Loading '+$(this).text()).show();
+			// load the set
+			flickr.set(set, function(data) {
+				// hide the loader
+				loader.fadeOut('fast');
+				// check if galleria has been initialized
+				if (elem.data('galleria')) {
+					// load galleria with the new data
+					elem.data('galleria').load( data );
+				// else initialize galleria (1st time)
+				} else {
+					elem.galleria({
+						// add the data as dataSource
+						dataSource: data,
+						// add a custom fullscreen button
+						extend: function() {
+							$('#fullscreen').click(this.proxy(function(e) {
+								e.preventDefault();
+								// call the enterFullscreen() method from the galleria API
+								this.enterFullscreen();
+							}));
+						}
+					});
+				}
+			});
+		});
+
+		// trigger a click onload so that the first gallery will be displayed when entering
+		$('#folders a:first-child').click();
+	</script>
+	</div>
+	<div style="clear: both;height: 0px;">&nbsp;</div>
+</div>
+<!-- end #page -->
+
+<div id="footer">
+	<p>&copy;2008-2012 | Powered by <a href="http://mootools.net/plugins/p/floom">floom</a> and <a href="http://galleria.io/">galleria</a> | <a href="mailto:tko@alumni.princeton.edu">t:Ko Design</a>.</p>
+</div>
+<!-- end #footer -->
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+	var sc_project=8070624; 
+	var sc_invisible=1; 
+	var sc_security="f9d9f653"; 
+</script>
+<script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript>
+	<div class="statcounter">
+		<a title="statistics for vBulletin" href="http://statcounter.com/vbulletin/" target="_blank">
+		<img class="statcounter" src="http://c.statcounter.com/8070624/0/f9d9f653/1/" alt="statistics for vBulletin" />
+		</a>
+	</div>
+</noscript>
+<!-- End of StatCounter Code for Default Guide -->
+</body>
+</html>
